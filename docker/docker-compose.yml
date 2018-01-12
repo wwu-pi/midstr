@@ -1,0 +1,37 @@
+version: '2'
+
+networks:
+  patecarunet:
+    driver: overlay
+
+services:
+  registry:
+    image: registry:2.3
+    restart: always
+    networks:
+      -patecarunet
+
+  patecaru-base:
+    build: ./base
+
+  patecaru-master:
+    build: ./patecaru-master/
+    networks:
+      - patecarunet
+    depends_on:
+      - openmpi
+    environment:
+       - constraint:node==c0-master
+
+  patecaru-client:
+    build: ./patercaru-worker/
+    networks:
+      - patecarunet
+    depends_on:
+      - openmpi
+    environment:
+       - affinity:container!=docker-patercaru-worker* 
+       - constraint:node==c0-n*
+     
+  
+

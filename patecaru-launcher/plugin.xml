@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="de.wwu.pi.patecaru.eclipse.launch.PatecaruLaunchConfigurationDelegate"
+            delegateDescription="This test launcher is used to run and debug Patecaru tests."
+            delegateName="Patecaru Launcher"
+            id="de.wwu.pi.patecaru.eclipse.launchConfigurationType"
+            migrationDelegate="org.eclipse.jdt.internal.junit.launcher.JUnitMigrationDelegate"
+            modes="run, debug"
+            name="Patecaru"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="de.wwu.pi.patecaru.eclipse.launchConfigurationType"
+            icon="icon/patecaru.png"
+            id="de.wwu.pi.patecaru.eclipse.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="de.wwu.pi.patecaru.eclipse.launch.PatecaruLaunchTabGroup"
+            id="de.wwu.pi.patecaru.eclipse.launchConfigurationTabGroup"
+            type="de.wwu.pi.patecaru.eclipse.launchConfigurationType">
+         <launchMode
+               description="Create a configuration that will launch a Patecaru test in debug mode."
+               mode="debug"
+               perspective="org.eclipse.debug.ui.DebugPerspective">
+         </launchMode>
+         <launchMode
+               description="Create a configuration that will launch a Patecaru test."
+               mode="run">
+         </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+
+ <!--
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="de.wwu.pi.patecaru.eclipse.launch.PatecaruLaunchShortcut"
+            icon="icon/patecaru.png"
+            id="de.wwu.pi.patecaru.eclipse.shortcut"
+            label="Patecaru Test"
+            modes="run, debug">
+		<contextualLaunch>
+            <enablement>
+               <with variable="selection">
+                  <count value="1"/>
+               	  <iterate>
+                      <adapt type="org.eclipse.jdt.core.IJavaElement">
+		                <test property="org.eclipse.jdt.core.isInJavaProjectWithNature" value="org.eclipse.pde.PluginNature"/>
+		                <test property="org.eclipse.jdt.core.hasTypeOnClasspath" value="junit.framework.Test"/>
+		                <test property="org.eclipse.jdt.junit.canLaunchAsJUnit" forcePluginActivation="true"/>
+		             </adapt>
+		          </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+         <configurationType
+               id="de.wwu.pi.patecaru.eclipse.launchConfigurationType">
+         </configurationType>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.junit.junitLaunchConfigs">
+      <launchConfigType
+            configTypeID="de.wwu.pi.patecaru.eclipse.launchConfigurationType">
+      </launchConfigType>
+   </extension> -->
+
+</plugin>
